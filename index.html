@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ANKWATA LUCKY WINNER</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>ANKWATA <span>LUCKY WINNER</span></h1>
+      <img src="mickey.jpg" alt="logo" class="corner-logo"/>
+    </header>
+
+    <main>
+      <div class="slot-wrapper">
+        <div id="slots" class="slots"></div>
+      </div>
+
+      <div class="controls">
+        <button id="generateBtn" class="fancy-btn">
+          <span class="btn-anim">Generate Winner</span>
+        </button>
+        <p class="note">Price per play: UGX <strong id="price">5000</strong></p>
+      </div>
+
+      <div id="status" class="status"></div>
+
+      <div id="result" class="result hidden">
+        <h2>Winner:</h2>
+        <div id="finalNumber" class="final-number">----------</div>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
