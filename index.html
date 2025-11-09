@@ -16,6 +16,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
 
     .header {
@@ -53,8 +54,8 @@
     }
 
     .digit {
-      width: 45px;
-      height: 65px;
+      width: 50px;
+      height: 70px;
       background: linear-gradient(145deg, #1b1b1b, #111);
       border-radius: 10px;
       font-size: 2rem;
@@ -67,12 +68,12 @@
 
     @keyframes glow {
       from { box-shadow: 0 0 10px #ffb30033; }
-      to { box-shadow: 0 0 20px #ffb30088; }
+      to { box-shadow: 0 0 20px #ffb300aa; }
     }
 
     .btn {
       margin-top: 40px;
-      padding: 12px 35px;
+      padding: 12px 40px;
       background: linear-gradient(90deg, #ff9900, #ffb300);
       border: none;
       border-radius: 25px;
@@ -101,35 +102,49 @@
     <img src="mickey.jpg" alt="Logo" />
   </div>
 
-  <div class="number-container" id="numberContainer">
-    <div class="digit">-</div>
-    <div class="digit">-</div>
-    <div class="digit">-</div>
-    <div class="digit">-</div>
-    <div class="digit">-</div>
-    <div class="digit">-</div>
-    <div class="digit">-</div>
-    <div class="digit">-</div>
-    <div class="digit">-</div>
-    <div class="digit">-</div>
-  </div>
+  <div class="number-container" id="numberContainer"></div>
 
-  <button class="btn" onclick="generateWinner()">Generate Winner</button>
+  <button class="btn" onclick="generateWinner()">🎰 Generate Winner</button>
 
   <footer>© 2025 ANKWATA LUCKY WINNER</footer>
 
+  <!-- 🎵 Sounds -->
+  <audio id="spinSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9bb5a31d6d.mp3?filename=slot-machine-spin-110167.mp3"></audio>
+  <audio id="jackpotSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4c86d2a528.mp3?filename=casino-win-110190.mp3"></audio>
+
   <script>
+    const container = document.getElementById('numberContainer');
+    const spinSound = document.getElementById('spinSound');
+    const jackpotSound = document.getElementById('jackpotSound');
+
+    // Create 10 digits
+    for (let i = 0; i < 10; i++) {
+      const div = document.createElement('div');
+      div.className = 'digit';
+      div.textContent = '-';
+      container.appendChild(div);
+    }
+
     function generateWinner() {
       const digits = document.querySelectorAll('.digit');
+      spinSound.currentTime = 0;
+      spinSound.play();
+
       digits.forEach((digit, i) => {
-        let counter = 0;
+        let spins = 0;
+        const spinSpeed = 50 + Math.random() * 50;
         const interval = setInterval(() => {
           digit.textContent = Math.floor(Math.random() * 10);
-          counter++;
-          if (counter > 20 + i * 5) {
+          spins++;
+          if (spins > 25 + i * 8) {
             clearInterval(interval);
+            if (i === digits.length - 1) {
+              spinSound.pause();
+              jackpotSound.currentTime = 0;
+              jackpotSound.play();
+            }
           }
-        }, 70);
+        }, spinSpeed);
       });
     }
   </script>
