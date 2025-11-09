@@ -1,39 +1,137 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ANKWATA LUCKY WINNER</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #0d0d0d, #000);
+      color: white;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .header img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin: 0;
+      color: #f7f7f7;
+    }
+
+    .highlight {
+      color: #ffb300;
+    }
+
+    .number-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 40px;
+      justify-content: center;
+    }
+
+    .digit {
+      width: 45px;
+      height: 65px;
+      background: linear-gradient(145deg, #1b1b1b, #111);
+      border-radius: 10px;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px #ffb30033;
+      animation: glow 1.5s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 10px #ffb30033; }
+      to { box-shadow: 0 0 20px #ffb30088; }
+    }
+
+    .btn {
+      margin-top: 40px;
+      padding: 12px 35px;
+      background: linear-gradient(90deg, #ff9900, #ffb300);
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      color: #111;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #ffb300;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #999;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>ANKWATA <span>LUCKY WINNER</span></h1>
-      <img src="mickey.jpg" alt="logo" class="corner-logo"/>
-    </header>
-
-    <main>
-      <div class="slot-wrapper">
-        <div id="slots" class="slots"></div>
-      </div>
-
-      <div class="controls">
-        <button id="generateBtn" class="fancy-btn">
-          <span class="btn-anim">Generate Winner</span>
-        </button>
-        <p class="note">Price per play: UGX <strong id="price">5000</strong></p>
-      </div>
-
-      <div id="status" class="status"></div>
-
-      <div id="result" class="result hidden">
-        <h2>Winner:</h2>
-        <div id="finalNumber" class="final-number">----------</div>
-      </div>
-    </main>
+  <div class="header">
+    <h1>ANKWATA <span class="highlight">LUCKY WINNER</span></h1>
+    <img src="mickey.jpg" alt="Logo" />
   </div>
 
-  <script src="script.js"></script>
+  <div class="number-container" id="numberContainer">
+    <div class="digit">-</div>
+    <div class="digit">-</div>
+    <div class="digit">-</div>
+    <div class="digit">-</div>
+    <div class="digit">-</div>
+    <div class="digit">-</div>
+    <div class="digit">-</div>
+    <div class="digit">-</div>
+    <div class="digit">-</div>
+    <div class="digit">-</div>
+  </div>
+
+  <button class="btn" onclick="generateWinner()">Generate Winner</button>
+
+  <footer>© 2025 ANKWATA LUCKY WINNER</footer>
+
+  <script>
+    function generateWinner() {
+      const digits = document.querySelectorAll('.digit');
+      digits.forEach((digit, i) => {
+        let counter = 0;
+        const interval = setInterval(() => {
+          digit.textContent = Math.floor(Math.random() * 10);
+          counter++;
+          if (counter > 20 + i * 5) {
+            clearInterval(interval);
+          }
+        }, 70);
+      });
+    }
+  </script>
 </body>
 </html>
