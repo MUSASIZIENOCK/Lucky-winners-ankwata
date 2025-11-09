@@ -27,7 +27,7 @@ body::before {
   height:100%;
   background:
     linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
-    url('mickey.jpg') center/cover no-repeat;
+    <img src="mickey.jpg" alt="mickey" /> center/cover no-repeat;
   background-attachment: fixed;
   filter: blur(8px) brightness(0.7);
   transform: scale(1.1);
