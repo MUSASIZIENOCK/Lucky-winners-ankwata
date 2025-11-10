@@ -3,10 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ANKWATA MARATHON LUCKY WINNER</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
+  <title>ANKWATA LUCKY WINNER</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #0d0d0d, #000);
+      color: white;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
 
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .header img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin: 0;
+      color: #f7f7f7;
+    }
+
+    .highlight {
+      color: #ffb300;
+    }
+
+    .number-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 40px;
+      justify-content: center;
+    }
+
+    .digit {
+      width: 50px;
+      height: 70px;
+      background: linear-gradient(145deg, #1b1b1b, #111);
+      border-radius: 10px;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px #ffb30033;
+      animation: glow 1.5s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 10px #ffb30033; }
+      to { box-shadow: 0 0 20px #ffb300aa; }
+    }
+
+    .btn {
+      margin-top: 40px;
+      padding: 12px 40px;
+      background: linear-gradient(90deg, #ff9900, #ffb300);
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      color: #111;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #ffb300;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #999;
+    }
+  </style>
+</head>
 <body>
   <div class="header">
     <h1>ANKWATA <span class="highlight">LUCKY WINNER</span></h1>
