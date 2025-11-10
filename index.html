@@ -89,6 +89,14 @@
       box-shadow: 0 0 15px #ffb300;
     }
 
+    #winnerNumber {
+      margin-top: 30px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #ffcc33;
+      letter-spacing: 2px;
+    }
+
     footer {
       margin-top: 40px;
       font-size: 0.9rem;
@@ -106,6 +114,8 @@
 
   <button class="btn" onclick="generateWinner()">🎰 Generate Winner</button>
 
+  <div id="winnerNumber"></div>
+
   <footer>© 2025 ANKWATA LUCKY WINNER</footer>
 
   <!-- 🎵 Sounds -->
@@ -116,8 +126,9 @@
     const container = document.getElementById('numberContainer');
     const spinSound = document.getElementById('spinSound');
     const jackpotSound = document.getElementById('jackpotSound');
+    const winnerNumberDisplay = document.getElementById('winnerNumber');
 
-    // Create 10 digits
+    // Create 10 slots
     for (let i = 0; i < 10; i++) {
       const div = document.createElement('div');
       div.className = 'digit';
@@ -129,7 +140,19 @@
       const digits = document.querySelectorAll('.digit');
       spinSound.currentTime = 0;
       spinSound.play();
+      winnerNumberDisplay.textContent = '';
 
+      // Allowed prefixes
+      const prefixes = ['070', '071', '074', '075', '077', '078'];
+      const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+
+      // Generate full 10-digit phone number
+      const remainingDigits = Array.from({ length: 10 - prefix.length }, () =>
+        Math.floor(Math.random() * 10)
+      ).join('');
+      const phoneNumber = prefix + remainingDigits;
+
+      // Slot machine spin animation
       digits.forEach((digit, i) => {
         let spins = 0;
         const spinSpeed = 50 + Math.random() * 50;
@@ -138,10 +161,12 @@
           spins++;
           if (spins > 25 + i * 8) {
             clearInterval(interval);
+            digit.textContent = phoneNumber[i];
             if (i === digits.length - 1) {
               spinSound.pause();
               jackpotSound.currentTime = 0;
               jackpotSound.play();
+              winnerNumberDisplay.textContent = "📞 " + phoneNumber;
             }
           }
         }, spinSpeed);
